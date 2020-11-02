@@ -17,6 +17,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'screen_name',
+        'profile_image',
         'name',
         'email',
         'password',
@@ -40,4 +42,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //following_idでUserと紐づけ。followerを取得
+    public function followers()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
+    }
+
+     //followed_idでUserと紐づけ
+    public function follows()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'following_id', 'followed_id');
+    }
 }
