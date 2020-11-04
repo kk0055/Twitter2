@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', [UsersController::class,'hoge']);
+// Route::get('/{userrrr}',[UsersController::class,'hoge']);
+
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::resource('users',UsersController::class,
+   ['only'=> ['index','show','edit','update']]);
+
+
+   Route::post('users/{user}/follow', [UsersController::class,'follow'])->name('follow');
+   Route::delete('users/{user}/unfollow', [UsersController::class,'unfollow'])->name('unfollow');  
+
+
+});

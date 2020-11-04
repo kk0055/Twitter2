@@ -30,4 +30,16 @@ class Tweet extends Model
         return $this->hasMany(Comment::class);
     }
 
+    //ツイート取得
+    public function getUserTimeLine(Int $user_id)
+    {
+        return $this->where('user_id', $user_id)->orderBy('created_at', 'DESC')->paginate(50);
+
+    }
+
+     //ツイート数取得
+    public function getTweetCount(Int $user_id)
+    {
+        return $this->where('user_id', $user_id)->count();
+    }
 }
