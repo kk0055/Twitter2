@@ -11,6 +11,7 @@ class Tweet extends Model
     use HasFactory;
     use softDeletes;
     
+    
     protected $fillable = [
         'text'
     ];
@@ -79,5 +80,11 @@ class Tweet extends Model
         $this->update();
 
         return;
+    }
+
+    //$user_id消しても問題ない
+    public function tweetDestroy($user_id,$tweet_id)
+    {
+        return $this->where('user_id',$user_id)->where('id',$tweet_id)->delete();
     }
 }
