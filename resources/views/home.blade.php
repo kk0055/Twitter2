@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+<a href="/tweets">
+                 Tweets
+                 </a>
                 </div>
             </div>
         </div>

@@ -17,11 +17,11 @@ use App\Http\Controllers\TweetsController;
 // Route::get('/', [UsersController::class,'hoge']);
 // Route::get('/{userrrr}',[UsersController::class,'hoge']);
 
-
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::group(['middleware' => 'auth'], function() {
 
@@ -35,4 +35,7 @@ Route::group(['middleware' => 'auth'], function() {
  
    Route::resource('tweets',TweetsController::class, ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
+   
+
 });
+
