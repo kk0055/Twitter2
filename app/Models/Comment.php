@@ -13,7 +13,7 @@ class Comment extends Model
     protected $fillable = [
         'text'
     ];
-
+    //CommentはUserの子
     public function user()
     {
         return $this->belongsTo(User::class);

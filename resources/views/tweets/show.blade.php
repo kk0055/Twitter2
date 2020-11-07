@@ -45,6 +45,7 @@
                                 <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
                             </form>
                         @else
+                        {{-- $tweet->favoriteのidを取得してuser_idをキーとした配列を返す [$user->id]は何？ --}}
                             <form method="POST" action="{{ url('favorites/' .array_column($tweet->favorites->toArray(), 'id', 'user_id')[$user->id]) }}" class="mb-0">
                                 @csrf
                                 @method('DELETE')

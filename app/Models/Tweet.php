@@ -15,17 +15,17 @@ class Tweet extends Model
     protected $fillable = [
         'text'
     ];
-
+   //TweetはUserの子
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
+   //favoritesの親
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
     }
-
+//commentsの親
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -82,7 +82,7 @@ class Tweet extends Model
         return;
     }
 
-    //$user_id消しても問題ない
+    // $user_id消しても問題ない?
     public function tweetDestroy($user_id,$tweet_id)
     {
         return $this->where('user_id',$user_id)->where('id',$tweet_id)->delete();
