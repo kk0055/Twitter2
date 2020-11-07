@@ -80,6 +80,18 @@
                         <div class="py-3">
                             {!! nl2br(e($comment->text)) !!}
                         </div>
+                       {{-- コメント削除 --}}
+                        @if ($comment->user->id === Auth::user()->id)
+                        <div class="d-flex justify-content-end">
+                                <form method="POST" action="{{ url('comments/' .$comment->id) }}" class="mb-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-primary ">削除</button>
+                                </form>
+                            
+                        </div>
+                    @endif
+                      {{-- コメント削除 ここまで--}}
                     </li>
                 @empty
                     <li class="list-group-item">

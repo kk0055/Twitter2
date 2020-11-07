@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
  
    Route::resource('tweets',TweetsController::class, ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
-  Route::resource('comments',CommentsController::class, ['only'=>['store']]);   
+  Route::resource('comments',CommentsController::class, ['only'=>['store','destroy']]);   
 
   Route::resource('favorites',FavoritesController::class, ['only'=>['store','destroy']]);
 });

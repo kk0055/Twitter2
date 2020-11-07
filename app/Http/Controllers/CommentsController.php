@@ -89,8 +89,20 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+        public function destroy(Comment $comment)
     {
-        //
+        $user = auth()->user();
+        
+        
+        $comment->where('id',$comment->id)->delete();
+
+
+     
+        return back();
+    }
+
+    public function tweetDestroy($user_id,$tweet_id)
+    {
+        return $this->where('user_id',$user_id)->where('id',$tweet_id)->delete();
     }
 }
